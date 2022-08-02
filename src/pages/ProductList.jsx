@@ -18,6 +18,17 @@ const Filter = styled.div`
   margin: 20px;
 `;
 
+const FilterText = styled.span`
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 20px;
+`;
+const Select = styled.select`
+padding: 10px;
+margin-right: 20px;
+`;
+const Option = styled.option``;
+
 const ProductList = () => {
   return (
     <Container>
@@ -25,12 +36,28 @@ const ProductList = () => {
       <Navbar />
       <Title>Games</Title>
       <FilterContainer>
-        <Filter>Filter 1</Filter>
-        <Filter>Filter 2</Filter>
+        <Filter>
+          <FilterText>Filter Products:</FilterText>
+          <Select>
+            <Option selected>
+              Games
+            </Option>
+            <Option>Consoles</Option>
+            <Option>Accessories</Option>
+          </Select>
+        </Filter>
+        <Filter>
+          <FilterText>Sort Products:</FilterText>
+          <Select>
+            <Option selected>Newest</Option>
+            <Option>Price (asc)</Option>
+            <Option>Price (desc)</Option>
+          </Select>
+        </Filter>
       </FilterContainer>
-      <Products/>
-      <Newsletter/>
-      <Footer/>
+      <Products />
+      <Newsletter />
+      <Footer />
     </Container>
   );
 };
