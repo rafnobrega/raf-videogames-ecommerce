@@ -3,7 +3,7 @@ import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { useState } from "react";
 import styled from "styled-components";
 import { sliderItems } from "../data";
-// import { mobile } from "../responsive";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
@@ -12,6 +12,7 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   /* background-color: #3bb3ff; */
+  ${mobile({ display: "none" })}
 `;
 
 const Arrow = styled.div`
