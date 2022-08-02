@@ -1,6 +1,5 @@
-
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100vw;
@@ -11,6 +10,7 @@ const Container = styled.div`
     ),
     url("https://d12jofbmgge65s.cloudfront.net/wp-content/uploads/2021/11/Best_Video_Games_Twitter.jpg")
       center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   padding: 20px;
-  width: 40%;
+  width: 25%;
   background-color: white;
 `;
 
@@ -29,16 +29,15 @@ const Title = styled.h1`
 
 const Form = styled.form`
   display: flex;
-  flex-wrap: wrap;
+    flex-direction: column;
 `;
 
 const Input = styled.input`
   flex: 1;
   min-width: 40%;
-  margin: 20px 10px 0px 0px;
+  margin: 10px 0px;
   padding: 10px;
 `;
-
 
 const Button = styled.button`
   width: 40%;
@@ -47,6 +46,14 @@ const Button = styled.button`
   background-color: #f5b0c1;
   color: white;
   cursor: pointer;
+  margin-bottom: 10px;
+`;
+
+const Link = styled.a`
+margin: 5px 0px;
+font-size: 12px;
+text-decoration: underline;
+cursor: pointer;
 `;
 
 const Login = () => {
@@ -65,6 +72,6 @@ const Login = () => {
       </Wrapper>
     </Container>
   );
-}
+};
 
-export default Login
+export default Login;
