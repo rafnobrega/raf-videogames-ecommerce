@@ -34,11 +34,11 @@ flex: 9;
 padding-left: 20px;
 `
 const Button = styled.button`
-flex: 1;
-border: none;
-background-color: teal;
-color: white;
-`
+  flex: 1;
+  border: none;
+  background-color: #f5b0c1;
+  color: white;
+`;
 
 const Newsletter = () => {
   return (

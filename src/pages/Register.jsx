@@ -5,11 +5,11 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    )
-    url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/most-popular-video-games-of-2022-1642612227.png?crop=1.00xw:1.00xh;0,0&resize=980:*")
-    center;
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
+    ),
+    url("https://media.wired.com/photos/61770e5c1309ffa6512c62ed/master/pass/Gear-10-Dead-Games-Series-133425591.jpg")
+      center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,10 +46,10 @@ const Agreement = styled.span`
 const Button = styled.button`
   width: 40%;
   border: none;
-    padding: 15px 20px;
-    background-color: teal;
-    color: white;
-    cursor: pointer;
+  padding: 15px 20px;
+  background-color: #f5b0c1;
+  color: white;
+  cursor: pointer;
 `;
 
 const Register = () => {
