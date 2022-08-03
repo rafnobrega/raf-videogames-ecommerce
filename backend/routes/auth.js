@@ -10,7 +10,7 @@ router.post("/register", async (req, res) => {
     email: req.body.email,
     password: CryptoJS.AES.encrypt(
       CryptoJS.enc.Utf8.parse(req.body.password),
-      process.env.PASSWORD_SECRET
+      process.env.PASS_SEC
     ).toString(),
   });
 
@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
 
     const hashedPassword = CryptoJS.AES.decrypt(
       user.password,
-      process.env.PASSWORD_SECRET
+      process.env.PASS_SEC
     );
 
     const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
@@ -43,8 +43,8 @@ router.post("/login", async (req, res) => {
         id: user._id,
         isAdmin: user.isAdmin,
       },
-      process.env.JWT_SECRET,
-      { expiresIn: "3d" }
+      process.env.JWT_SEC,
+      { expiresIn: "2d" }
     );
 
     const { password, ...others } = user._doc;
