@@ -55,14 +55,14 @@ const ProductList = () => {
     <Container>
       <Navbar />
       <Announcement />
-      <Title>Games</Title>
+      <Title>{category}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select name="cat" onChange={handleFilters}>
-            <Option selected>Games</Option>
-            <Option>Consoles</Option>
-            <Option>Accessories</Option>
+          <Select name="category" onChange={handleFilters}>
+            <Option >games</Option>
+            <Option>consoles</Option>
+            <Option>accessories</Option>
           </Select>
         </Filter>
         <Filter>
