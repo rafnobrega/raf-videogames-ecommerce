@@ -164,7 +164,7 @@ const Product = () => {
         <InfoContainer>
           <Title>{product.title}</Title>
           <Description>{product.description}</Description>
-          <Price>$ {(product.price / 100).toFixed(2)}</Price>
+          <Price>$ {product.price}</Price>
           <AddContainer>
             <AmountContainer>
               <Remove onClick={() => handleQuantity("dec")} />

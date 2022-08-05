@@ -5,6 +5,14 @@ import { Footer } from "../components/Footer";
 import styled from "styled-components";
 import { Add, Remove } from "@mui/icons-material";
 import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import { useState } from "react";
+import { useEffect } from "react";
+import { userRequest } from "../requestMethods";
+import { useHistory } from "react-router-dom";
+
+const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
 
@@ -53,7 +61,6 @@ const Bottom = styled.div`
 
 const Info = styled.div`
   flex: 3;
-
 `;
 
 const Product = styled.div`
@@ -148,6 +155,29 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+
+  const [stripeToken, setStripeToken] = useState(null);
+
+  const history = useHistory();
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100,
+        });
+        history.push("/success", { data: res.data });
+      } catch {}
+    };
+    stripeToken && cart.total >= 1 && makeRequest();
+  }, [stripeToken, cart.total, history]);
+
   return (
     <Container>
       <Navbar />
@@ -164,57 +194,42 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://cdn.shopify.com/s/files/1/0490/7312/7591/products/gaming-shop-946837_500x.jpg?v=1620997720" />
-                <Details>
-                  <ProductName>
-                    <b>Product: </b>Playstation 5 Console Bundle
-                  </ProductName>
-                  <ProductId>
-                    <b>ID: </b>0000000000
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 299.99</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product) => (
+              <Product>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>
+                      <b>Product: </b>
+
+                      {product.title}
+                    </ProductName>
+                    <ProductId>
+                      <b>ID: </b>
+                      {product._id}
+                    </ProductId>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContainer>
+                    <Add />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove />
+                  </ProductAmountContainer>
+                  <ProductPrice>
+                    $ {product.price * product.quantity}
+                  </ProductPrice>
+                </PriceDetail>
+              </Product>
+            ))}
 
             <Hr />
-
-            <Product>
-              <ProductDetail>
-                <Image src="https://m.media-amazon.com/images/I/61JGKhqxHxL._AC_SX522_.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product: </b>Xbox Console with Controller
-                  </ProductName>
-                  <ProductId>
-                    <b>ID: </b>0000055555
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 250.99</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>Order Summary</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal:</SummaryItemText>
-              <SummaryItemText>$ 00.00</SummaryItemText>
+              <SummaryItemText>$ {cart.total}</SummaryItemText>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping:</SummaryItemText>
@@ -228,7 +243,17 @@ const Cart = () => {
               <SummaryItemText type="total">Total:</SummaryItemText>
               <SummaryItemText>$ 00.00</SummaryItemText>
             </SummaryItem>
-            <Button>Checkout now</Button>
+            <StripeCheckout
+              name="Raf Games"
+              image="https://raw.githubusercontent.com/rafnobrega/tweeter/master/public/images/profile-hex.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is: ${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              stripeKey={KEY}
+            ></StripeCheckout>
+            <Button>Checkout Now</Button>
           </Summary>
         </Bottom>
       </Wrapper>
