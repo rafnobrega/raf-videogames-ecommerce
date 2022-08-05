@@ -31,15 +31,28 @@ const Products = ({ category, filters, sort }) => {
     getProducts();
   }, [category]);
 
+  // useEffect(() => {
+  //   category &&
+  //     setFilteredProducts(
+  //       products.filter((item) =>
+  //         Object.entries(filters).every(([key, value]) =>
+  //           item[key].includes(value)
+  //         )
+  //       )
+  //     );
+  // }, [products, category, filters]);
+
   useEffect(() => {
     category &&
       setFilteredProducts(
-        products.filter((item) =>
-          Object.entries(filters).every(([key, value]) =>
-            item[key].includes(value)
-          )
-        )
+        products.filter((item) => {
+          return Object.entries(filters).every(([key, value]) => {
+            return item[key] == value;
+            // return item[key].includes(value);
+          });
+        })
       );
+    console.log(filteredProducts);
   }, [products, category, filters]);
 
   useEffect(() => {
