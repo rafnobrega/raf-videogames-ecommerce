@@ -24,9 +24,9 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 80vh;
-  object-fit: cover;
+  width: 40vw;
+  max-height: 600px;
+  object-fit: scale-down;
   ${mobile({ height: "40vh" })}
 `;
 
@@ -47,6 +47,7 @@ const Description = styled.p`
 const Price = styled.span`
   font-weight: 100;
   font-size: 40px;
+
 `;
 
 const FilterContainer = styled.div`

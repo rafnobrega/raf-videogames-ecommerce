@@ -38,15 +38,16 @@ const Container = styled.div`
 `;
 
 const Circle = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-color: white;
   position: absolute;
 `;
 
 const Image = styled.img`
-  height: 75%;
+  width: 220px;
+  height: auto;
   z-index: 2;
 `;
 
