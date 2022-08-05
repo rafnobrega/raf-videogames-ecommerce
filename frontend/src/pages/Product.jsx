@@ -8,6 +8,8 @@ import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../requestMethods";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 
@@ -125,15 +127,17 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
 
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const res = await publicRequest.get("/products/find/" + id);
-        setProduct(res.data);
-      } catch {}
-      getProduct();
-    };
-  }, [id]);
+  const dispatch = useDispatch();
+
+ useEffect(() => {
+   const getProduct = async () => {
+     try {
+       const res = await publicRequest.get("/products/find/" + id);
+       setProduct(res.data);
+     } catch {}
+   };
+   getProduct();
+ }, [id]);
 
   const handleQuantity = (type) => {
     if (type === "dec") {
@@ -145,8 +149,8 @@ const Product = () => {
 
   const handleClick = () => {
     // UPDATE CART
-    
-  }
+    dispatch(addProduct({ ...product, quantity }));
+  };
   return (
     <Container>
       <Navbar />
@@ -159,7 +163,7 @@ const Product = () => {
         <InfoContainer>
           <Title>{product.title}</Title>
           <Description>{product.description}</Description>
-          <Price>{product.price}</Price>
+          <Price>$ {(product.price / 100).toFixed(2)}</Price>
           <AddContainer>
             <AmountContainer>
               <Remove onClick={() => handleQuantity("dec")} />
