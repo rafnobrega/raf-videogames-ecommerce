@@ -46,7 +46,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import Success from "./pages/Success";
-// import Success from "./pages/Success";
 // import { useSelector } from "react-redux";
 
 const App = () => {
