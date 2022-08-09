@@ -29,7 +29,7 @@ export default function WidgetLg() {
           <th className="widgetLgTh">Amount</th>
           <th className="widgetLgTh">Status</th>
         </tr>
-        {orders.map((order) => {
+        {orders.map((order) => (
           <tr className="widgetLgTr">
             <td className="widgetLgUser">
               <span className="widgetLgName">{order.userId}</span>
@@ -39,8 +39,8 @@ export default function WidgetLg() {
             <td className="widgetLgStatus">
               <Button type={order.status} />
             </td>
-          </tr>;
-        })}
+          </tr>
+        ))}
       </table>
     </div>
   );
