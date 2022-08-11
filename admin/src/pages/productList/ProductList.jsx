@@ -11,6 +11,7 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
+
   useEffect(() => {
     getProducts(dispatch);
   }, [dispatch]);
@@ -48,7 +49,7 @@ deleteProduct(id, dispatch)
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={"/product/" + params.row._id}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
