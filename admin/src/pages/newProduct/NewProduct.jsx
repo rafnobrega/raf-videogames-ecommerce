@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./newProduct.css";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase"
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
@@ -17,7 +18,7 @@ export default function NewProduct() {
 
   const handleClick = (event) => {
     event.preventDefault();
-    
+
   }
 
   return (
