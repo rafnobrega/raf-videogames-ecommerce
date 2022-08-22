@@ -4,14 +4,24 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+const key = process.env.REACT_APP_apiKey
+const auth = process.env.REACT_APP_authDomain
+const project = process.env.REACT_APP_projectId
+const storage = process.env.REACT_APP_storageBucket
+const sender = process.env.REACT_APP_messagingSenderId
+const appIdentification = process.env.REACT_APP_appId
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAAZiK1JBcwmNELJr7CTZUPvHOfSs3cHyg",
-  authDomain: "rafgamesecommerce.firebaseapp.com",
-  projectId: "rafgamesecommerce",
-  storageBucket: "rafgamesecommerce.appspot.com",
-  messagingSenderId: "398733197024",
-  appId: "1:398733197024:web:60ee0fcac4b2e4571e9a85",
+  apiKey: key,
+  authDomain: auth,
+  projectId: project,
+  storageBucket: storage,
+  messagingSenderId: sender,
+  appId: appIdentification,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+
+export default app;
