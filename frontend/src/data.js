@@ -3,7 +3,7 @@ export const sliderItems = [
     id: 1,
     img: "https://gmedia.playstation.com/is/image/SIEPDC/god-of-war-hub-hero-banner-featured-01-en-09jul21?$1600px--t$",
     title: "PRE-ORDER & SAVE",
-    desc: "PRE-ORDER THE NEW GOW AND GET 10% OFF!",
+    desc: "PRE-ORDER THE NEW GOW!",
     bg: "#C6E3FA",
   },
   {
